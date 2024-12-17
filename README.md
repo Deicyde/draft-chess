@@ -1,2 +1,1 @@
-# draft-chess
-A simple chess game in godot
+This project was created in an effort to learn Godot 4 and GDScript. It was done in conjunction with learning the basics of how chess engines work. The code in this project is not optimized or efficient as it was primarily used as a learning tool, so take anything in here with a grain of salt.
