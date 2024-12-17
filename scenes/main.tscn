@@ -1,0 +1,700 @@
+[gd_scene load_steps=20 format=3 uid="uid://cbmvjf3ejtrbg"]
+
+[ext_resource type="Script" path="res://systems/MainGame.gd" id="1_r2qtu"]
+[ext_resource type="Script" path="res://entities/Tiles.gd" id="2_3fqaa"]
+[ext_resource type="Script" path="res://systems/Shop.gd" id="2_g3r0w"]
+[ext_resource type="PackedScene" uid="uid://ciccwlg4mm2kk" path="res://entities/shop_piece.tscn" id="2_lsvnr"]
+[ext_resource type="Texture2D" uid="uid://cy10ckpyaxj4r" path="res://sprites/nw.png" id="2_r4pak"]
+[ext_resource type="LabelSettings" uid="uid://b2cjoqj61gy1c" path="res://resources/label_setting.tres" id="2_r7y7q"]
+[ext_resource type="Texture2D" uid="uid://bb1h8u2tf0rr3" path="res://sprites/bw.png" id="3_s3uqt"]
+[ext_resource type="Texture2D" uid="uid://12rpxwffl8jx" path="res://sprites/rw.png" id="4_aqseb"]
+[ext_resource type="PackedScene" uid="uid://bknyt3jr1wtsx" path="res://entities/tile_marker.tscn" id="4_uer28"]
+[ext_resource type="PackedScene" uid="uid://dbijbncklxsnb" path="res://entities/turn_marker.tscn" id="4_xjrox"]
+[ext_resource type="Texture2D" uid="uid://blhsp0nd6aq8s" path="res://sprites/qw.png" id="5_m7vtb"]
+[ext_resource type="Texture2D" uid="uid://byebulb6mjh7k" path="res://sprites/nb.png" id="6_aqm0v"]
+[ext_resource type="Texture2D" uid="uid://b0ahe06rslalr" path="res://sprites/bb.png" id="7_a5gfm"]
+[ext_resource type="Texture2D" uid="uid://bhg34f1rqm2jn" path="res://sprites/rb.png" id="8_1tkxn"]
+[ext_resource type="Texture2D" uid="uid://c425lqw7d5lp7" path="res://sprites/qb.png" id="9_eq8cp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_juccd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rr3ce"]
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_djjrh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jpuh"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainGame" type="Node2D"]
+script = ExtResource("1_r2qtu")
+
+[node name="Shop" type="Node2D" parent="."]
+position = Vector2(10, 40)
+script = ExtResource("2_g3r0w")
+
+[node name="Shop Banner" type="Label" parent="Shop"]
+offset_left = 1334.0
+offset_top = 100.0
+offset_right = 1894.0
+offset_bottom = 144.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 34
+text = "SHOP"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteFunds" type="Label" parent="Shop"]
+offset_left = 1334.0
+offset_top = 416.0
+offset_right = 1558.0
+offset_bottom = 444.0
+theme_override_font_sizes/font_size = 26
+text = "White Funds: $0 (+1 next turn)"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 160
+
+[node name="BlackFunds" type="Label" parent="Shop"]
+offset_left = 1334.0
+offset_top = 448.0
+offset_right = 1704.0
+offset_bottom = 490.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 26
+text = "Black Funds: $0 (+1 next turn)"
+horizontal_alignment = 1
+vertical_alignment = 1
+justification_flags = 160
+
+[node name="EndTurn" type="Button" parent="Shop"]
+offset_left = 1766.0
+offset_top = 424.0
+offset_right = 1894.0
+offset_bottom = 480.0
+text = "Pass Turn
+(18 Remaining)"
+
+[node name="Graphics" type="Control" parent="Shop"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1294.0
+offset_top = 150.0
+offset_right = 1910.0
+offset_bottom = 416.0
+
+[node name="Pawn Graphic" parent="Shop/Graphics" instance=ExtResource("2_lsvnr")]
+position = Vector2(32, 34)
+
+[node name="Knight Graphic" parent="Shop/Graphics" instance=ExtResource("2_lsvnr")]
+position = Vector2(144, 42)
+piece_type_str = "n"
+
+[node name="Bishop Graphic" parent="Shop/Graphics" instance=ExtResource("2_lsvnr")]
+position = Vector2(256, 42)
+piece_type_str = "b"
+
+[node name="Rook Graphic" parent="Shop/Graphics" instance=ExtResource("2_lsvnr")]
+position = Vector2(368, 42)
+piece_type_str = "r"
+
+[node name="Queen Graphic" parent="Shop/Graphics" instance=ExtResource("2_lsvnr")]
+position = Vector2(480, 42)
+piece_type_str = "q"
+
+[node name="Piece Names" type="Panel" parent="Shop/Graphics"]
+layout_mode = 0
+offset_left = 40.0
+offset_right = 600.0
+offset_bottom = 32.0
+
+[node name="Pawns" type="Label" parent="Shop/Graphics/Piece Names"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 34.0
+text = "Pawns"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Knights" type="Label" parent="Shop/Graphics/Piece Names"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 2.0
+offset_right = 224.0
+offset_bottom = 34.0
+text = "Knights"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bishops" type="Label" parent="Shop/Graphics/Piece Names"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 2.0
+offset_right = 336.0
+offset_bottom = 34.0
+text = "Bishops
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rooks" type="Label" parent="Shop/Graphics/Piece Names"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 2.0
+offset_right = 448.0
+offset_bottom = 34.0
+text = "Rooks
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Queens" type="Label" parent="Shop/Graphics/Piece Names"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 2.0
+offset_right = 560.0
+offset_bottom = 34.0
+text = "Queens"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Remaining Quantities" type="Panel" parent="Shop/Graphics"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 224.0
+offset_right = 600.0
+offset_bottom = 256.0
+
+[node name="Pawn Amount" type="Label" parent="Shop/Graphics/Remaining Quantities"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 112.0
+offset_bottom = 34.0
+text = "x16"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Knight Amount" type="Label" parent="Shop/Graphics/Remaining Quantities"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 2.0
+offset_right = 224.0
+offset_bottom = 34.0
+text = "x4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bishop Amount" type="Label" parent="Shop/Graphics/Remaining Quantities"]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 2.0
+offset_right = 336.0
+offset_bottom = 34.0
+text = "x4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Rook Amount" type="Label" parent="Shop/Graphics/Remaining Quantities"]
+layout_mode = 0
+offset_left = 336.0
+offset_top = 2.0
+offset_right = 448.0
+offset_bottom = 34.0
+text = "x4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Queen Amount" type="Label" parent="Shop/Graphics/Remaining Quantities"]
+layout_mode = 0
+offset_left = 448.0
+offset_top = 2.0
+offset_right = 560.0
+offset_bottom = 34.0
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buy Buttons" type="Panel" parent="Shop/Graphics"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 194.0
+offset_right = 600.0
+offset_bottom = 226.0
+
+[node name="Pawn Buy" type="Button" parent="Shop/Graphics/Buy Buttons"]
+layout_mode = 0
+offset_right = 112.0
+offset_bottom = 32.0
+text = "Buy $1"
+
+[node name="Knight Buy" type="Button" parent="Shop/Graphics/Buy Buttons"]
+layout_mode = 0
+offset_left = 112.0
+offset_right = 224.0
+offset_bottom = 32.0
+text = "Buy $3"
+
+[node name="Bishop Buy" type="Button" parent="Shop/Graphics/Buy Buttons"]
+layout_mode = 0
+offset_left = 224.0
+offset_right = 336.0
+offset_bottom = 32.0
+text = "Buy $3"
+
+[node name="Rook Buy" type="Button" parent="Shop/Graphics/Buy Buttons"]
+layout_mode = 0
+offset_left = 336.0
+offset_right = 448.0
+offset_bottom = 32.0
+text = "Buy $5"
+
+[node name="Queen Buy" type="Button" parent="Shop/Graphics/Buy Buttons"]
+layout_mode = 0
+offset_left = 448.0
+offset_right = 560.0
+offset_bottom = 32.0
+text = "Buy $9"
+
+[node name="Board" type="Node2D" parent="."]
+position = Vector2(10, 10)
+
+[node name="Control" type="Control" parent="Board"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1056.0
+offset_bottom = 1056.0
+
+[node name="Ranks" type="Panel" parent="Board/Control"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 32.0
+offset_bottom = 1056.0
+
+[node name="1" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 896.0
+offset_right = 32.0
+offset_bottom = 1024.0
+text = "1"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 768.0
+offset_right = 32.0
+offset_bottom = 896.0
+text = "2"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 640.0
+offset_right = 32.0
+offset_bottom = 768.0
+text = "3"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 512.0
+offset_right = 32.0
+offset_bottom = 640.0
+text = "4"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="5" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 384.0
+offset_right = 32.0
+offset_bottom = 512.0
+text = "5"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="6" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 256.0
+offset_right = 32.0
+offset_bottom = 384.0
+text = "6"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="7" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 32.0
+offset_bottom = 256.0
+text = "7"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="8" type="Label" parent="Board/Control/Ranks"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 128.0
+text = "8"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Files" type="Panel" parent="Board/Control"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 1056.0
+offset_bottom = 32.0
+
+[node name="A" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 32.0
+text = "A
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="B" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 256.0
+offset_bottom = 32.0
+text = "B"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="C" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 384.0
+offset_bottom = 32.0
+text = "C
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="D" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 384.0
+offset_right = 512.0
+offset_bottom = 32.0
+text = "D
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="E" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 512.0
+offset_right = 640.0
+offset_bottom = 32.0
+text = "E"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="F" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 640.0
+offset_right = 768.0
+offset_bottom = 32.0
+text = "F"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="G" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 768.0
+offset_right = 896.0
+offset_bottom = 32.0
+text = "G"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="H" type="Label" parent="Board/Control/Files"]
+layout_mode = 0
+offset_left = 896.0
+offset_right = 1024.0
+offset_bottom = 32.0
+text = "H"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FENCopyContainer" type="CenterContainer" parent="Board/Control"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_right = 1056.0
+offset_bottom = 200.0
+mouse_filter = 0
+
+[node name="ColorRect" type="ColorRect" parent="Board/Control/FENCopyContainer"]
+custom_minimum_size = Vector2(1056, 200)
+layout_mode = 2
+color = Color(0.13, 0.13, 0.13, 1)
+
+[node name="FENCopy" type="Label" parent="Board/Control/FENCopyContainer"]
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+mouse_filter = 0
+text = "Click to copy and close:
+
+kq6/8/8/3R4/8/5Q2/8/7K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FENEditContainer" type="CenterContainer" parent="Board/Control"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_right = 1056.0
+offset_bottom = 200.0
+mouse_filter = 0
+
+[node name="ColorRect" type="ColorRect" parent="Board/Control/FENEditContainer"]
+custom_minimum_size = Vector2(1056, 200)
+layout_mode = 2
+color = Color(0.13, 0.13, 0.13, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Board/Control/FENEditContainer"]
+layout_mode = 2
+
+[node name="FENEdit" type="TextEdit" parent="Board/Control/FENEditContainer/VBoxContainer"]
+auto_translate_mode = 2
+custom_minimum_size = Vector2(800, 100)
+layout_mode = 2
+localize_numeral_system = false
+placeholder_text = "Paste FEN Here"
+context_menu_enabled = false
+deselect_on_focus_loss_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+caret_move_on_right_click = false
+caret_multiple = false
+
+[node name="DoImport" type="Button" parent="Board/Control/FENEditContainer/VBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+text = "Initialize From FEN"
+
+[node name="GameOverContainer" type="CenterContainer" parent="Board/Control"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_right = 1056.0
+offset_bottom = 50.0
+mouse_filter = 0
+
+[node name="ColorRect" type="ColorRect" parent="Board/Control/GameOverContainer"]
+custom_minimum_size = Vector2(1056, 50)
+layout_mode = 2
+color = Color(0.13, 0.13, 0.13, 1)
+
+[node name="GameOver" type="Label" parent="Board/Control/GameOverContainer"]
+z_index = 2
+layout_mode = 2
+text = "Game Over"
+label_settings = ExtResource("2_r7y7q")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PromotionContainer" type="CenterContainer" parent="Board/Control"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_right = 1056.0
+offset_bottom = 200.0
+mouse_filter = 0
+
+[node name="ColorRect" type="ColorRect" parent="Board/Control/PromotionContainer"]
+custom_minimum_size = Vector2(1056, 200)
+layout_mode = 2
+color = Color(0.13, 0.13, 0.13, 1)
+
+[node name="WhitePieces" type="HBoxContainer" parent="Board/Control/PromotionContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 128)
+layout_mode = 2
+
+[node name="Knight" type="Button" parent="Board/Control/PromotionContainer/WhitePieces"]
+layout_mode = 2
+icon = ExtResource("2_r4pak")
+
+[node name="Bishop" type="Button" parent="Board/Control/PromotionContainer/WhitePieces"]
+layout_mode = 2
+icon = ExtResource("3_s3uqt")
+
+[node name="Rook" type="Button" parent="Board/Control/PromotionContainer/WhitePieces"]
+layout_mode = 2
+icon = ExtResource("4_aqseb")
+
+[node name="Queen" type="Button" parent="Board/Control/PromotionContainer/WhitePieces"]
+layout_mode = 2
+icon = ExtResource("5_m7vtb")
+
+[node name="BlackPieces" type="HBoxContainer" parent="Board/Control/PromotionContainer"]
+visible = false
+custom_minimum_size = Vector2(500, 128)
+layout_mode = 2
+
+[node name="Knight" type="Button" parent="Board/Control/PromotionContainer/BlackPieces"]
+layout_mode = 2
+icon = ExtResource("6_aqm0v")
+
+[node name="Bishop" type="Button" parent="Board/Control/PromotionContainer/BlackPieces"]
+layout_mode = 2
+icon = ExtResource("7_a5gfm")
+
+[node name="Rook" type="Button" parent="Board/Control/PromotionContainer/BlackPieces"]
+layout_mode = 2
+icon = ExtResource("8_1tkxn")
+
+[node name="Queen" type="Button" parent="Board/Control/PromotionContainer/BlackPieces"]
+layout_mode = 2
+icon = ExtResource("9_eq8cp")
+
+[node name="Tiles" type="Node2D" parent="Board"]
+position = Vector2(32, 32)
+script = ExtResource("2_3fqaa")
+
+[node name="Markers" type="Node2D" parent="Board/Tiles"]
+z_index = 1
+
+[node name="TileMarker" parent="Board/Tiles/Markers" instance=ExtResource("4_uer28")]
+visible = false
+position = Vector2(50, 50)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1100.0
+offset_top = 10.0
+offset_right = 1328.0
+offset_bottom = 1034.0
+
+[node name="MoveList" type="ItemList" parent="UI"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -2.0
+offset_right = 221.0
+offset_bottom = 1022.0
+focus_mode = 0
+allow_search = false
+max_columns = 3
+fixed_column_width = 63
+
+[node name="NewGame" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 250.0
+offset_right = 400.0
+offset_bottom = 32.0
+text = "New Game"
+
+[node name="ExportToFEN" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 40.0
+offset_right = 400.0
+offset_bottom = 72.0
+text = "Export To FEN"
+
+[node name="ImportFromFEN" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 80.0
+offset_right = 400.0
+offset_bottom = 112.0
+text = "Import From FEN"
+
+[node name="ForceDraw" type="Button" parent="UI"]
+visible = false
+layout_mode = 0
+offset_left = 250.0
+offset_top = 540.0
+offset_right = 400.0
+offset_bottom = 572.0
+theme_override_colors/font_color = Color(0.894118, 0.305882, 0.254902, 1)
+text = "Force Draw"
+
+[node name="Clock" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="WhiteClock" type="Label" parent="UI/Clock"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 52.0
+offset_right = 491.0
+offset_bottom = 92.0
+text = "10:00"
+label_settings = SubResource("LabelSettings_juccd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlackClock" type="Label" parent="UI/Clock"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 52.0
+offset_right = 566.0
+offset_bottom = 92.0
+text = "10:00"
+label_settings = SubResource("LabelSettings_rr3ce")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteLabel" type="Label" parent="UI/Clock"]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 27.0
+offset_right = 491.0
+offset_bottom = 67.0
+text = "White"
+label_settings = SubResource("LabelSettings_djjrh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlackLabel" type="Label" parent="UI/Clock"]
+layout_mode = 0
+offset_left = 491.0
+offset_top = 27.0
+offset_right = 566.0
+offset_bottom = 67.0
+text = "Black"
+label_settings = SubResource("LabelSettings_5jpuh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhiteTurnMarker" parent="UI/Clock" instance=ExtResource("4_xjrox")]
+offset_left = 416.0
+offset_top = 2.0
+offset_right = 416.0
+offset_bottom = 2.0
+
+[node name="BlackTurnMarker" parent="UI/Clock" instance=ExtResource("4_xjrox")]
+offset_left = 491.0
+offset_top = 2.0
+offset_right = 491.0
+offset_bottom = 2.0
+
+[connection signal="pressed" from="Shop/EndTurn" to="Shop" method="_on_end_turn_pressed"]
+[connection signal="pressed" from="Shop/Graphics/Buy Buttons/Pawn Buy" to="Shop" method="_on_pawn_buy_pressed"]
+[connection signal="pressed" from="Shop/Graphics/Buy Buttons/Knight Buy" to="Shop" method="_on_knight_buy_pressed"]
+[connection signal="pressed" from="Shop/Graphics/Buy Buttons/Bishop Buy" to="Shop" method="_on_bishop_buy_pressed"]
+[connection signal="pressed" from="Shop/Graphics/Buy Buttons/Rook Buy" to="Shop" method="_on_rook_buy_pressed"]
+[connection signal="pressed" from="Shop/Graphics/Buy Buttons/Queen Buy" to="Shop" method="_on_queen_buy_pressed"]
+[connection signal="gui_input" from="Board/Control/FENCopyContainer/FENCopy" to="." method="_on_fen_copy_gui_input"]
+[connection signal="pressed" from="Board/Control/FENEditContainer/VBoxContainer/DoImport" to="." method="_on_do_import_pressed"]
+[connection signal="pressed" from="UI/NewGame" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="UI/ExportToFEN" to="." method="_on_export_to_fen_pressed_button"]
+[connection signal="pressed" from="UI/ImportFromFEN" to="." method="_on_import_from_fen_pressed_button"]
+[connection signal="pressed" from="UI/ForceDraw" to="." method="_on_force_draw_pressed"]
