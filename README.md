@@ -1,1 +1,5 @@
-This project was created in an effort to learn Godot 4 and GDScript. It was done in conjunction with learning the basics of how chess engines work. The code in this project is not optimized or efficient as it was primarily used as a learning tool, so take anything in here with a grain of salt.
+Jack McCarthy, Final Project for CISC-2540, Prof. John Bezark
+
+Fork of GChess by jsmrcina. Credits for the original board graphics and game rules implementation, [https://github.com/jsmrcina/gchess].
+
+Added the ability for players to "draft" their starting lineup by purchasing pieces from a shop. King placement is now randomized, the starting squares of the pieces and army composition can be vastly asymetrical. Castling is removed.
